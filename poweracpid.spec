@@ -64,4 +64,4 @@ fi
 %doc AUTHORS ChangeLog NEWS README
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/%{name}
-%attr(755,root,root) %{_sbindir}/%{name}
+%attr(755,root,root) %{_bindir}/%{name}
