@@ -2,7 +2,7 @@ Summary:	Power ACPI Event Daemon
 Summary(pl):	Demon zdarzeñ ACPI
 Name:		poweracpid
 Version:	0.2
-Release:	0.2
+Release:	1
 License:	GPL v2
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/poweracpid/%{name}-%{version}.tar.bz2
