@@ -30,6 +30,12 @@ zaprojektowany tak, aby by³ bardziej funkcjonalny i bardziej doskona³y
 ni¿ aktualny acpid. Power acpid jest bardzo lu¼no oparty na pracach z
 http://acpid.sourceforge.net/.
 
+%description -l pl
+poweracpid jest demonem ACPI (Advanced Configuration and Power
+Interface), zaprojektowanym tak, aby poprawiæ projekt i dzia³anie
+obecnego acpid. poweracpid jest bardzo nieznacznie oparty na projekcie
+z acpid.sourceforge.net.
+
 %prep
 %setup -q
 
