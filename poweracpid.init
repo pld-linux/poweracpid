@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# poweracpid	Starts the acpi daemon
+#
+# chkconfig:	345 44 56
+# description:	Listen and dispatch ACPI events from the kernel
+# processname:	poweracpid
+#
+# pidfile:	/var/run/poweracpid.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Configuration file.
+. /etc/sysconfig/poweracpid
+
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	if [ ! -f /var/lock/subsys/poweracpid ]; then
+		if [ ! -d /proc/acpi/button ]; then
+			_modprobe ospm_button
+			_modprobe button
+		fi
+		if is_yes "$MODPROBE_OSPM_SYSTEM"; then
+			_modprobe single ospm_system
+		fi
+		# starting:
+		msg_starting poweracpid $PROGRAM_ARGS
+		# Load additional modules:
+		if [ -z "$LAPTOP_MODULES" ]; then
+			for i in "$LAPTOP_MODULES"; do
+				_modprobe single $i
+			done
+		elif [ -z "$VARIOUS_MODULES" ] then
+			for i in "$VARIOUS_MODULES"; do
+				_modprobe single $i
+			done
+		fi
+		# Determine if it's ASUS or TOSHIBA laptop
+		if is_yes "$ASUS_LAPTOP"; then
+			_modprobe asus_acpi
+		elif is_yes "$TOSHIBA_LAPTOP"; then
+			_modprobe toshiba_acpi
+		fi
+		daemon poweracpid
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/poweracpid
+	else
+		msg_already_running poweracpid
+	fi
+	;;
+  stop)
+	# Stop daemons.
+	if [ -f /var/lock/subsys/poweracpid ]; then
+		msg_stopping poweracpid
+		killproc poweracpid
+		rm -f /var/lock/subsys/poweracpid >/dev/null 2>&1
+	else
+		msg_not_running poweracpid
+	fi
+	;;
+  reload|force-reload)
+	if [ -f /var/lock/subsys/poweracpid ]; then
+		msg_reloading poweracpid
+		killproc poweracpid -HUP
+		RETVAL=$?
+	else
+		msg_not_running poweracpid >&2
+		exit 7
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  status)
+	status poweracpid
+	exit $?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL
