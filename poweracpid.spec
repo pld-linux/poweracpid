@@ -10,6 +10,7 @@ Source0:	http://dl.sourceforge.net/poweracpid/%{name}-%{version}.tar.bz2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://sourceforge.net/projects/poweracpid/
+BuildRequires:	automake
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Provides:	acpid
@@ -34,6 +35,7 @@ http://acpid.sourceforge.net/ .
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.* .
 %configure
 %{__make}
 
