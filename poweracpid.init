@@ -28,15 +28,13 @@ case "$1" in
 		if is_yes "$MODPROBE_OSPM_SYSTEM"; then
 			_modprobe single ospm_system
 		fi
-		# starting:
-		msg_starting poweracpid $PROGRAM_ARGS
 		# Load additional modules:
-		if [ -z "$LAPTOP_MODULES" ]; then
-			for i in "$LAPTOP_MODULES"; do
+		if [ -n "$LAPTOP_MODULES" ]; then
+			for i in $LAPTOP_MODULES; do
 				_modprobe single $i
 			done
-		elif [ -z "$VARIOUS_MODULES" ] then
-			for i in "$VARIOUS_MODULES"; do
+		elif [ -n "$VARIOUS_MODULES" ]; then
+			for i in $VARIOUS_MODULES; do
 				_modprobe single $i
 			done
 		fi
@@ -46,6 +44,8 @@ case "$1" in
 		elif is_yes "$TOSHIBA_LAPTOP"; then
 			_modprobe toshiba_acpi
 		fi
+		# starting:
+		msg_starting poweracpid $PROGRAM_ARGS
 		daemon poweracpid
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/poweracpid
