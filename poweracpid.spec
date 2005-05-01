@@ -22,14 +22,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Power acpid is an ACPI (Advanced Configuration and Power Interface)
 daemon designed to be more functional and improve on the design of the
 current acpid. Power acpid is very loosely based on work from
-http://acpid.sourceforge.net/ .
+<http://acpid.sourceforge.net/>.
 
 %description -l pl
 Power acpid to demon ACPI (Advanced Configuration and Power Interface,
 czyli zaawansowanego interfejsu do konfiguracji i zarz±dzania energi±)
 zaprojektowany tak, aby by³ bardziej funkcjonalny i bardziej doskona³y
 ni¿ aktualny acpid. Power acpid jest bardzo lu¼no oparty na pracach z
-http://acpid.sourceforge.net/ .
+<http://acpid.sourceforge.net/>.
 
 %prep
 %setup -q
