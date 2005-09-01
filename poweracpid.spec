@@ -70,7 +70,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/%{name}
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
 %attr(755,root,root) %{_bindir}/%{name}
