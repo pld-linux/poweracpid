@@ -11,11 +11,12 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://sourceforge.net/projects/poweracpid/
 BuildRequires:	automake
-PreReq:		rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 Provides:	acpid
-Obsoletes:	apmd
 Obsoletes:	acpid
+Obsoletes:	apmd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,17 +55,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add %{name}
-if [ -f /var/lock/subsys/%{name} ]; then
-	/etc/rc.d/init.d/%{name} restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/%{name} start\" to start PowerACPI daemon."
-fi
+%service %{name} restart "PowerACPI daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/%{name} ]; then
-		/etc/rc.d/init.d/%{name} stop>&2
-	fi
+	%service %{name} stop
 	/sbin/chkconfig --del %{name}
 fi
 
