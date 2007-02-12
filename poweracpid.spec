@@ -1,5 +1,5 @@
 Summary:	Power ACPI Event Daemon
-Summary(pl):	Demon zdarzeÒ ACPI
+Summary(pl.UTF-8):   Demon zdarze≈Ñ ACPI
 Name:		poweracpid
 Version:	0.2
 Release:	3
@@ -25,11 +25,11 @@ daemon designed to be more functional and improve on the design of the
 current acpid. Power acpid is very loosely based on work from
 <http://acpid.sourceforge.net/>.
 
-%description -l pl
+%description -l pl.UTF-8
 Power acpid to demon ACPI (Advanced Configuration and Power Interface,
-czyli zaawansowanego interfejsu do konfiguracji i zarz±dzania energi±)
-zaprojektowany tak, aby by≥ bardziej funkcjonalny i bardziej doskona≥y
-niø aktualny acpid. Power acpid jest bardzo luºno oparty na pracach z
+czyli zaawansowanego interfejsu do konfiguracji i zarzƒÖdzania energiƒÖ)
+zaprojektowany tak, aby by≈Ç bardziej funkcjonalny i bardziej doskona≈Çy
+ni≈º aktualny acpid. Power acpid jest bardzo lu≈∫no oparty na pracach z
 <http://acpid.sourceforge.net/>.
 
 %prep
