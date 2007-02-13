@@ -1,5 +1,5 @@
 Summary:	Power ACPI Event Daemon
-Summary(pl.UTF-8):   Demon zdarzeń ACPI
+Summary(pl.UTF-8):	Demon zdarzeń ACPI
 Name:		poweracpid
 Version:	0.2
 Release:	3
