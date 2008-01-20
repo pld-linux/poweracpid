@@ -2,8 +2,8 @@ Summary:	Power ACPI Event Daemon
 Summary(pl.UTF-8):	Demon zdarzeń ACPI
 Name:		poweracpid
 Version:	0.2
-Release:	3
-License:	GPL v2
+Release:	4
+License:	GPL v2+
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/poweracpid/%{name}-%{version}.tar.bz2
 # Source0-md5:	abb2962b7781ba5d92b2e9fa6d969ed2
@@ -14,9 +14,10 @@ BuildRequires:	automake
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
-Provides:	acpid
-Obsoletes:	acpid
-Obsoletes:	apmd
+Provides:	acpi-daemon
+Obsoletes:	acpi-daemon
+Obsoletes:	apm-daemon
+ExclusiveArch:	%{ix86} %{x8664} ia64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
